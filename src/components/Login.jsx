@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from "react";
 
 import NavBar from "./Utilities/NavBar";
 import Footer from "./Utilities/Footer";
+
+import { Container, Row, Form, FormGroup, Label, Input } from "reactstrap";
 
 export default class Login extends Component {
   constructor(props) {
@@ -29,49 +29,40 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <NavBar />
         <Footer />
 
-        <div className="login-form">
-          <h2>Login</h2>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="form-group">
-              <label className="sr-only" htmlFor="email">
-                Username
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                autoCapitalize={false}
-                name="email"
-                placeholder="Enter email..."
-                autoFocus
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="sr-only" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="form-control"
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <button className="btn btn-primary btn-block" type="submit">
-                <span>Sign-In</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+        <Container>
+          <Row>
+            <h2>Login Form</h2>
+            <Form>
+              <Row>
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="exampleEmail"
+                    placeholder="with a placeholder"
+                  />
+                </FormGroup>
+              </Row>
+              <Row>
+                <FormGroup>
+                  <Label for="examplePassword">Password</Label>
+                  <Input
+                    type="password"
+                    name="password"
+                    id="examplePassword"
+                    placeholder="password placeholder"
+                  />
+                </FormGroup>
+              </Row>
+            </Form>
+          </Row>
+        </Container>
+      </Fragment>
     );
   }
 }
