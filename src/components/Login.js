@@ -17,7 +17,7 @@ export default class Login extends Component {
 		e.preventDefault();
 
 		console.log(this.state);
-		const { email, password } = this.state;
+		// const { email, password } = this.state;
 
 		// Add to firebase
 	};
@@ -41,7 +41,7 @@ export default class Login extends Component {
 						<div className="col border border-dark mx-auto mb-2 rounded-lg">
 							<form className="pt-4 pl-2 pr-2" onSubmit={this.handleSubmit}>
 								<div className="form-group">
-									<label for="exampleInputEmail1">Email address</label>
+									<label htmlFor="exampleInputEmail1">Email address</label>
 									<input
 										type="email"
 										className="form-control"
@@ -56,7 +56,7 @@ export default class Login extends Component {
 									</small>
 								</div>
 								<div className="form-group">
-									<label for="exampleInputPassword1">Password</label>
+									<label htmlFor="exampleInputPassword1">Password</label>
 									<input
 										type="password"
 										className="form-control"
@@ -66,11 +66,11 @@ export default class Login extends Component {
 										onChange={this.onChange}
 									/>
 								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="text-center">
+								<div className="row">
+									<div className="col-sm-12">
+										<div className="text-center">
 											<button
-												class="btn btn-dark mb-3 p-auto mt-1"
+												className="btn btn-dark mb-3 p-auto mt-1"
 												id="submitBtn"
 											>
 												Submit
