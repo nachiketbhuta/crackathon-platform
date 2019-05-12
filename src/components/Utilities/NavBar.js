@@ -1,48 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-     } from 'reactstrap';
-
-import Style from 'style-it';
-  
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 export default function NavBar() {
-  const [isOpen, setisOpen] = useState(false);
-
   return (
-    <Style>
-      {`  
-        .logo:hover {
-          text-decoration: none !important;
-          cursor: none; 
-        }
-      `}
-    </Style>
-    ,
-    <div>
-      <Navbar color="dark" light expand="md">
-        <NavbarBrand><Link className="logo" to="/" className="text-white">Coditor</Link></NavbarBrand>
-        <NavbarToggler onClick={() => setisOpen(!isOpen)} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem className="text-white">
-              <NavLink><Link to="/editor" className="text-white">Editor</Link></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink><Link to="/login" className="text-white">Login</Link></NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <Navbar bg="dark" expand="lg" variant="dark">
+      <Navbar.Brand className="pl-5 h2">Coditor</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link href="/editor" className="mr-4">Editor</Nav.Link>
+          <Nav.Link href="/login" className="mr-4">Login</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }

@@ -5,6 +5,8 @@ import HomeScreen from "./components/HomeScreen";
 import Editor from "./components/Editor";
 import Login from "./components/Login";
 
+import "./App.css";
+
 export default function App() {
   return (
     <Fragment>

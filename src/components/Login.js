@@ -3,66 +3,88 @@ import React, { Component, Fragment } from "react";
 import NavBar from "./Utilities/NavBar";
 import Footer from "./Utilities/Footer";
 
-import { Container, Row, Form, FormGroup, Label, Input } from "reactstrap";
-
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
+		this.state = {
+			email: "",
+			password: ""
+		};
+	}
 
-  handleSubmit = e => {
-    e.preventDefault();
+	handleSubmit = e => {
+		e.preventDefault();
 
-    const { email, password } = this.state;
+		console.log(this.state);
+		const { email, password } = this.state;
 
-    // Add to firebase
-  };
+		// Add to firebase
+	};
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
-  render() {
-    return (
-      <Fragment>
-        <NavBar />
-        <Footer />
-
-        <Container>
-          <Row>
-            <h2>Login Form</h2>
-            <Form>
-              <Row>
-                <FormGroup>
-                  <Label for="email">Email</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
-                    placeholder="with a placeholder"
-                  />
-                </FormGroup>
-              </Row>
-              <Row>
-                <FormGroup>
-                  <Label for="examplePassword">Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="examplePassword"
-                    placeholder="password placeholder"
-                  />
-                </FormGroup>
-              </Row>
-            </Form>
-          </Row>
-        </Container>
-      </Fragment>
-    );
-  }
+	render() {
+		return (
+			<Fragment>
+				<NavBar />
+				<div className="container mt-5 mb-5">
+					<div className="row align-items-center mb-2">
+						<div className="col">
+							<p className="h3 text-center">Login</p>
+						</div>
+					</div>
+					<div className="row align-items-center">
+						<div className="col" />
+						<div className="col border border-dark mx-auto mb-2 rounded-lg">
+							<form className="pt-4 pl-2 pr-2" onSubmit={this.handleSubmit}>
+								<div className="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+									<input
+										type="email"
+										className="form-control"
+										id="email"
+										name="email"
+										aria-describedby="emailHelp"
+										placeholder="Enter email"
+										onChange={this.onChange}
+									/>
+									<small id="emailHelp" className="form-text text-muted">
+										We'll never share your email with anyone else.
+									</small>
+								</div>
+								<div className="form-group">
+									<label for="exampleInputPassword1">Password</label>
+									<input
+										type="password"
+										className="form-control"
+										id="password"
+										name="password"
+										placeholder="Password"
+										onChange={this.onChange}
+									/>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="text-center">
+											<button
+												class="btn btn-dark mb-3 p-auto mt-1"
+												id="submitBtn"
+											>
+												Submit
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div className="col" />
+					</div>
+				</div>
+				<Footer />
+			</Fragment>
+		);
+	}
 }

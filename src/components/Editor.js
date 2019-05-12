@@ -9,7 +9,6 @@ export default class Editor extends Component {
   render() {
     return (
       <Fragment>
-      <NavBar />
       <div style={{ position: 'relative', height: "500px", width: "100%" }}>
         <MonacoEditor
           language="javascript"
@@ -19,7 +18,6 @@ export default class Editor extends Component {
           }}
         />
       </div>
-      <Footer />
       </Fragment>
     );
   }
