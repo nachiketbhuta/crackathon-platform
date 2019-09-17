@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@uiw/react-monacoeditor": "^1.0.6",
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
+    "react-ace": "^7.0.4",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
