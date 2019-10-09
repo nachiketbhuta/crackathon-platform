@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import AceEditor from 'react-ace';
 import 'brace/mode/java';
 import 'brace/mode/python';
+import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
 import Language from './Editor/Language';
@@ -11,9 +12,9 @@ export default class Editor extends Component {
         super(props);
         this.state = {
             code: `print("Hello World");`,
-            languages: ['c', 'cpp', 'java', 'python'],
+            languages: ['c', 'cpp', 'java', 'python', 'javascript'],
             selectedLanguage: 'python',
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -59,7 +60,9 @@ export default class Editor extends Component {
                     }
                 </select>
 
-                <AceEditor
+                {
+                    
+                    this.state.isDisabled &&    <AceEditor
                     width="1280px"
                     height="730px"
                     mode={this.state.selectedLanguage}
@@ -69,8 +72,12 @@ export default class Editor extends Component {
                     value={this.state.code}
                     editorProps={{$blockScrolling: true}}
                     fontSize={16}   
+
+                    
                     // readOnly
-                />
+                />           
+                }
+                
 
                 <div className="compile-btn">
                     <div className="row">
