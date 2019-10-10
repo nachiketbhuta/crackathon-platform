@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from "react";
 
-import NavBar from "./Utilities/NavBar";
-import Footer from "./Utilities/Footer";
-
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
