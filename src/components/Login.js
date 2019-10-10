@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 
+import Navbar from './Navbar';
+
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -26,7 +28,7 @@ export default class Login extends Component {
 	render() {
 		return (
 			<Fragment>
-				<NavBar />
+				<Navbar />
 				<div className="container mt-5 mb-5">
 					<div className="row align-items-center mb-2">
 						<div className="col">
@@ -48,9 +50,6 @@ export default class Login extends Component {
 										placeholder="Enter email"
 										onChange={this.onChange}
 									/>
-									<small id="emailHelp" className="form-text text-muted">
-										We'll never share your email with anyone else.
-									</small>
 								</div>
 								<div className="form-group">
 									<label htmlFor="exampleInputPassword1">Password</label>
@@ -80,7 +79,6 @@ export default class Login extends Component {
 						<div className="col" />
 					</div>
 				</div>
-				<Footer />
 			</Fragment>
 		);
 	}
