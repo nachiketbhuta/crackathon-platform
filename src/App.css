@@ -5,22 +5,44 @@
   height: 60px !important;
 } */
 
+.display-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
+.all-btns-container {
+  flex: 1;
+  order: 2;
+}
+
 .card-container {
   font-family: 'Courier New', Courier, monospace;
   width: 40%;
-  margin: auto;
+  flex: 1;
+  margin-top: 25px;
+  order: 1;
 }
 
 .score-container {
   margin: auto;
 }
 
-body{
-  padding-top: 50px;
+body {
+  padding-top: 80px;
+  overflow: hidden;
 }
 
-html, body{
-  
-  color: #fff;
+#root {
+  height: 100vh;
+}
+
+.score {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  color: white;
 }
 

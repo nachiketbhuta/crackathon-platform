@@ -80,14 +80,18 @@ export default class Editor extends Component {
 
   renderScore = (isCorrect) => {
     let { score } = this.state;
-
     score = parseInt(score);
 
+    // if (score == 0) {
+    //   document.getElementById("score").style.color = "white";
+    // }
     if (isCorrect) {
+      document.getElementById("score").style.color = "#39ff14";
       this.renderAlert("Correct Answer")
       score += 100
     } else {
       this.renderAlert("Wrong Answer")
+      document.getElementById("score").style.color = "red";
       score -= 5;
     }
 
@@ -98,9 +102,26 @@ export default class Editor extends Component {
 
   render() {
     return (
-      <div>
-        <div className="score-container ">
-          <p>Score: {this.state.score}</p>
+      <div className="display-container">
+        <div className="all-btns-container">
+          <div className="score-container">
+            <p className="score text-center" id="score">Score: {this.state.score}</p>
+          </div>
+
+          <div className="text-center pt-5">
+            <input
+              type="submit"
+              className="btn btn-success btn-lg"
+              onClick={() =>{
+                  if (this.checkAnswer(this.state.cards)) {
+                    this.renderScore(true);
+                  } else {
+                    this.renderScore(false);
+                  }
+                }
+              }
+            />
+          </div>
         </div>
         <div className="card-container">
           {this.state.cards.map((card, i) => (
@@ -113,18 +134,6 @@ export default class Editor extends Component {
             />
 
           ))}
-          <input
-            type="submit"
-            className="btn btn-success"
-            onClick={() =>{
-                if (this.checkAnswer(this.state.cards)) {
-                  this.renderScore(true);
-                } else {
-                  this.renderScore(false);
-                }
-              }
-            }
-          />
         </div>
       </div>
 

@@ -14,13 +14,14 @@ import {
 import flow from 'lodash/flow';
 
 const style = {
-  border: '1px dashed gray',
+  border: '1px solid white',
   padding: '0.5rem 1rem',
   marginBottom: '.5rem',
-  backgroundColor: 'rgb(18, 0, 98)',
+  background: '',
   cursor: 'move',
-  color: 'white',
-  borderRadius: '10px'
+  color: '#39ff14',
+  borderRadius: '10px',
+  marginRight: '25px'
 };
 
 const cardSource = {

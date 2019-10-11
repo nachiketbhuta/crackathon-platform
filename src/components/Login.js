@@ -7,7 +7,7 @@ export default class Login extends Component {
 		super(props);
 
 		this.state = {
-			email: "",
+			username: "",
 			password: ""
 		};
 	}
@@ -28,34 +28,33 @@ export default class Login extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Navbar />
-				<div className="container mt-5 mb-5">
+				<div className="container mt-3 mb-5">
 					<div className="row align-items-center mb-2">
 						<div className="col">
-							<p className="h3 text-center">Login</p>
+							<p className="h3 text-center text-white">Welcome to Crackathon Round 1!!</p>
 						</div>
 					</div>
-					<div className="row align-items-center">
+					<div className="row mt-4 align-items-center">
 						<div className="col" />
-						<div className="col border border-dark mx-auto mb-2 rounded-lg">
+						<div className="col border border-grey mx-auto mb-2 rounded-lg">
 							<form className="pt-4 pl-2 pr-2" onSubmit={this.handleSubmit}>
 								<div className="form-group">
-									<label htmlFor="exampleInputEmail1">Email address</label>
+									<label htmlFor="username-input" className="text-white">Username</label>
 									<input
-										type="email"
-										className="form-control"
-										id="email"
-										name="email"
-										aria-describedby="emailHelp"
-										placeholder="Enter email"
+										type="text"
+										id="text"
+										className="form-control text-dark"
+										name="username"
+										aria-describedby="username"
+										placeholder="Enter Username"
 										onChange={this.onChange}
 									/>
 								</div>
 								<div className="form-group">
-									<label htmlFor="exampleInputPassword1">Password</label>
+									<label htmlFor="password-input" className="text-white">Password</label>
 									<input
 										type="password"
-										className="form-control"
+										className="form-control text-dark"
 										id="password"
 										name="password"
 										placeholder="Password"
@@ -66,7 +65,7 @@ export default class Login extends Component {
 									<div className="col-sm-12">
 										<div className="text-center">
 											<button
-												className="btn btn-dark mb-3 p-auto mt-1"
+												className="btn btn-success mb-3 p-auto mt-1"
 												id="submitBtn"
 											>
 												Submit
