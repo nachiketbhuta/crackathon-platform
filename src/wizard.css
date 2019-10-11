@@ -6,20 +6,7 @@ ol.progtrckr {
   ol.progtrckr li {
     display: inline-block;
     text-align: center;
-    line-height: 420  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    %;
+    line-height: 420%;
     cursor: pointer;
     width: 18.5%
   }
