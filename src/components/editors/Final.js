@@ -25,7 +25,7 @@ export default class Final extends Component {
 
     if (prgm1 && prgm2 && prgm3 && prgm4) {
       const data = {
-        team: localStorage.getItem('team')
+        team: localStorage.getItem('team'),
         score: this.state.finalScore
       };
   
