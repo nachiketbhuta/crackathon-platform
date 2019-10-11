@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Card from './Card';
+import './../App.css';
 
 const update = require('immutability-helper');
 
