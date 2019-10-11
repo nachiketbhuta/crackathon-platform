@@ -6,12 +6,12 @@ ol.progtrckr {
   ol.progtrckr li {
     display: inline-block;
     text-align: center;
-    line-height: 4.5rem;
+    line-height: 4.1rem;
     cursor: pointer;
   }
   
   ol.progtrckr li span {
-    padding: 0 1.5rem;
+    padding:  7.5rem;
   }
   
   @media (max-width: 650px) {
@@ -48,6 +48,7 @@ ol.progtrckr {
   
   ol.progtrckr li:after {
     content: "\00a0\00a0";
+    bottom: -3.7rem;
   }
   
   ol.progtrckr li:before {
@@ -59,9 +60,9 @@ ol.progtrckr {
   
   ol.progtrckr li.progtrckr-todo:before {
     content: "\039F";
-    color: silver;
+    color: white;
     background-color: white;
-    width: 1.2em;
+    width: 1em;
     line-height: 1.4em;
   }
   

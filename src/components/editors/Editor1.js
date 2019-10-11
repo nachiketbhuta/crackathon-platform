@@ -12,7 +12,7 @@ export default class Editor1 extends Component {
     cards: [
       {
         id: 1,
-        text: '#include<iostream>',
+        text: '#include<iostream1>',
       },
       {
         id: 2,
@@ -101,10 +101,8 @@ export default class Editor1 extends Component {
 
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
-      this.renderAlert("Correct Answer")
       score += 100
     } else {
-      this.renderAlert("Wrong Answer")
       document.getElementById("score").style.color = "red";
       score -= 10;
     }
@@ -116,60 +114,62 @@ export default class Editor1 extends Component {
 
   render() {
     return (
-        
-        <div className="display-container">
-          <div className="all-btns-container">
-            <div className="score-container">
-              <p className="score text-center" id="score">Score: {this.state.score}</p>
-              <div className="example-testcases justify-content-around">
-                <div className="input-testcases">
-                  <p className="font-weight-bold h5 text-white">Example Input</p>
-                  <pre className="text-white">
-                    10 3
+
+      <div className="display-container ">
+        <div className="all-btns-container">
+          <div className="score-container">
+            <p className="score text-center" id="score">Score: {this.state.score}</p>
+            <div className="example-testcases justify-content-around">
+              <div className="input-testcases">
+                <p className="font-weight-bold h5 text-white text-center">Example Input</p>
+                <pre className="text-white text-center">
+                  10 3
                 </pre>
-                </div>
-                <div className="output-testcases">
-                  <p className="font-weight-bold h5 text-white">Example Output</p>
-                  <pre className="text-white">
-                    13
+              </div>
+              <div className="output-testcases">
+                <p className="font-weight-bold h5 text-white text-center">Example Output</p>
+                <pre className="text-white text-center">
+                  13
                 </pre>
-                </div>
               </div>
             </div>
-
-            <div className="text-center pt-5">
-              <input
-                type="submit"
-                className="btn btn-success btn-lg"
-                onClick={() => {
-                  if (this.checkAnswer(this.state.cards)) {
-                    this.renderScore(true);
-                    this.setState({
-                      time: moment().format('MMMM Do YYYY, h:mm:ss a')
-                    })
-                  } else {
-                    this.renderScore(false);
-                  }
-                }
-                }
-              />
-
-              <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p>
-            </div>
           </div>
-          <div className="card-container">
-            {this.state.cards.map((card, i) => (
-              <Card
-                key={card.id}
-                index={i}
-                id={card.id}
-                text={card.text}
-                moveCard={this.moveCard}
-              />
 
-            ))}
+          <div className="text-center pt-5">
+            <input
+              value="Submit"
+              type="submit"
+              className="btn btn-success btn-lg"
+              onClick={() => {
+                if (this.checkAnswer(this.state.cards)) {
+                  this.renderScore(true);
+                  this.setState({
+                    time: moment().format('MMMM Do YYYY, h:mm:ss a')
+                  })
+                } else {
+                  this.renderScore(false);
+                }
+              }
+              }
+            />
+
+
+            <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p>
           </div>
         </div>
+        <div className="card-container">
+          {this.state.cards.map((card, i) => (
+            <Card
+              key={card.id}
+              index={i}
+              id={card.id}
+              text={card.text}
+              moveCard={this.moveCard}
+            />
+
+          ))}
+        </div>
+      </div>
     )
   }
 }
