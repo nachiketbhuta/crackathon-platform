@@ -24,7 +24,7 @@ const style = {
   marginRight: '25px',
   display: 'flex',
   flexDirection: 'row',
-  whiteSpace: 'pre-line'
+  whiteSpace: 'pre'
 };
 
 const cardSource = {

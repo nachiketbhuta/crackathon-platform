@@ -42,6 +42,9 @@ export default class Editor2 extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      score: localStorage.getItem('score') === 'true' ? localStorage.getItem('score'): 0
+    })
     this.setCorrectOrder()
   }
 
@@ -101,13 +104,16 @@ export default class Editor2 extends Component {
 
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
-      
-      score += 100
+      score += 100;
+      localStorage.setItem('prgm1', true);
+
     } else {
-      
       document.getElementById("score").style.color = "red";
       score -= 10;
+      localStorage.setItem('prgm1', false);
     }
+
+    localStorage.setItem('score', score);
 
     this.setState({
       score

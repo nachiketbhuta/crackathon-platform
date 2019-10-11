@@ -10,49 +10,77 @@ export default class Editor1 extends Component {
 
   state = {
     cards: [
-      {
-        id: 1,
-        text: '#include<iostream>',
-      },
-      {
-        id: 2,
-        text: 'using namespace std;',
-      },
-      {
-        id: 3,
-        text: 'int main() {',
-      },
-      {
-        id: 4,
-        text: `if (s==1) {
-          cout << "Hello World" << endl;
-        }`,
-      },
-      {
-        id: 5,
-        text:
-          'return 0;',
-      },
-      {
-        id: 6,
-        text: '}',
-      },
+      // {
+      //   id: 1,
+      //   text: '#include<iostream>',
+      // },
+      // {
+      //   id: 2,
+      //   text: 'using namespace std;',
+      // },
+      // {
+      //   id: 3,
+      //   text: 'int main() {',
+      // },
+      // {
+      //   id: 4,
+      //   text: 'if (s==1) \n{\n\tcout << "Hello World" << endl;\n\tcout<<"Test" << endl;\n}',
+      // },
+      // {
+      //   id: 5,
+      //   text:
+      //     '\treturn 0;',
+      // },
+      // {
+      //   id: 6,
+      //   text: '}',
+      // },
     ],
-    language: ['c', 'cpp', 'java', 'python'],
+    languages: ['javascript'],
     score: 0,
     time: null,
     inputTestcases: '10 3',
     outputTestcases: '13',
   }
 
-  componentDidMount() {
-    this.setCorrectOrder()
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     score: localStorage.getItem('score') === 'true' ? localStorage.getItem('score'): 0
+  //   })
+  //   this.setCorrectOrder();
+  // }
 
-  componentWillMount() {
+  async componentWillMount() {
     // Language
+    const randomLang = this.state.languages[Math.floor(Math.random()*this.state.languages.length)];
+    
+    const data = {
+			language: randomLang
+		};
 
+		const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/getquestion`, {
+			method: 'POST',
+			mode: 'cors',
+			cache: 'no-cache',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			  },
+			  redirect: 'follow', // manual, *follow, error
+			  referrer: 'no-referrer', // no-referrer, *client
+			  body: JSON.stringify(data)
+		});
 
+		const resData = await res.json();
+
+    console.log(resData);
+    this.setState({
+      cards: resData.cards,
+      outputTestcases: resData.outputTestCases
+    })
+
+    this.setCorrectOrder();
   }
 
   setCorrectOrder = () => {
@@ -66,7 +94,7 @@ export default class Editor1 extends Component {
       order.push(i);
     }
 
-    // console.log(order);
+    console.log(order);
 
     this.setState({
       correctOrder: order
@@ -117,9 +145,19 @@ export default class Editor1 extends Component {
       score -= 10;
     }
 
+    localStorage.setItem('score', score);
+
     this.setState({
       score
     })
+
+    // if (localStorage.getItem('score') === false) {
+    //   localStorage.setItem('score', this.state.score);
+    // } else {
+    //   this.setState({
+    //     score: localStorage.getItem('score')
+    //   });
+    // }
   }
 
   render() {

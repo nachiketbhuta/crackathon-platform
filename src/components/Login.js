@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Redirect } from 'react-router-dom';
 // import { BASE_URL } from './../constants';
 
 export default class Login extends Component {
@@ -40,6 +41,9 @@ export default class Login extends Component {
 		const resData = await res.json();
 
 		console.log(resData);
+		if (resData.success) {
+			return <Redirect to="/editor" />
+		}
 		
 	};
 
