@@ -11,7 +11,7 @@ const steps = [
     {name: 'Program 1', component: <Editor1/>},
     {name: 'Program 2', component: <Editor2/>},
     {name: 'Program 3', component: <Editor3/>},
-    {name: 'Program 4', component: <Editor4/>}
+    {name: 'Program 4', component: <Editor4/>},
   ];
 
 export { steps }

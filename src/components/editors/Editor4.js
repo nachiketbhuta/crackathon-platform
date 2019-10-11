@@ -101,10 +101,10 @@ export default class Editor4 extends Component {
 
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
-      this.renderAlert("Correct Answer")
+      
       score += 100
     } else {
-      this.renderAlert("Wrong Answer")
+      
       document.getElementById("score").style.color = "red";
       score -= 10;
     }
