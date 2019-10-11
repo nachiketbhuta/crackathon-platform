@@ -46,3 +46,9 @@ body {
   color: white;
 }
 
+.time {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as moment from 'moment';
 
 import Card from './Card';
 import './../App.css';
@@ -36,13 +37,29 @@ export default class Editor extends Component {
       },
     ],
 
-    correctOrder: [1, 2, 3, 4, 5, 6],
     score: 0,
+    time: null
   }
 
   componentDidMount() {
+    this.setCorrectOrder()
+  }
+
+  setCorrectOrder = () => {
+    const order = [];
+    const ids = [];
+    this.state.cards.forEach(card => ids.push(card.id));
+    
+    const max = Math.max.apply(null, ids);
+    
+    for (let i = 1; i <= max; i++) {
+      order.push(i);
+    }
+
+    // console.log(order);
+
     this.setState({
-      status: ''
+      correctOrder: order
     })
   }
 
@@ -82,9 +99,6 @@ export default class Editor extends Component {
     let { score } = this.state;
     score = parseInt(score);
 
-    // if (score == 0) {
-    //   document.getElementById("score").style.color = "white";
-    // }
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
       this.renderAlert("Correct Answer")
@@ -92,7 +106,7 @@ export default class Editor extends Component {
     } else {
       this.renderAlert("Wrong Answer")
       document.getElementById("score").style.color = "red";
-      score -= 5;
+      score -= 10;
     }
 
     this.setState({
@@ -106,6 +120,7 @@ export default class Editor extends Component {
         <div className="all-btns-container">
           <div className="score-container">
             <p className="score text-center" id="score">Score: {this.state.score}</p>
+            <div className="time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</div>
           </div>
 
           <div className="text-center pt-5">
@@ -115,6 +130,9 @@ export default class Editor extends Component {
               onClick={() =>{
                   if (this.checkAnswer(this.state.cards)) {
                     this.renderScore(true);
+                    this.setState({
+                      time: moment().format('MMMM Do YYYY, h:mm:ss a')
+                    })
                   } else {
                     this.renderScore(false);
                   }

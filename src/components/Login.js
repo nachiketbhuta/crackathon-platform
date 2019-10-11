@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 
-import Navbar from './Navbar';
-
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -16,7 +14,7 @@ export default class Login extends Component {
 		e.preventDefault();
 
 		console.log(this.state);
-		// const { email, password } = this.state;
+		const { username, password } = this.state;
 
 		// Add to firebase
 	};
