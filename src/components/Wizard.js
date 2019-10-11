@@ -8,7 +8,8 @@ import './../wizard.css';
 export default function Wizard() {
     return (
         <div className="step-progress">
-            <StepZilla steps={steps} showSteps={true} showNavigation={true} stepsNavigation={false} prevBtnOnLastStep={false} />
+            <StepZilla steps={steps} showSteps={true} showNavigation={true} stepsNavigation={false} prevBtnOnLastStep={false} 
+ />
 
         </div>
 

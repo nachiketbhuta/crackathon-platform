@@ -6,13 +6,26 @@ ol.progtrckr {
   ol.progtrckr li {
     display: inline-block;
     text-align: center;
-    line-height: 3.0rem;
+    line-height: 420  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    %;
     cursor: pointer;
-    width: 23%
+    width: 18.5%
   }
   
   ol.progtrckr li span {
-    padding: 7.5rem;
+    padding: 20%; 
   }
   
   @media (max-width: 650px) {
@@ -95,5 +108,9 @@ ol.progtrckr {
     color: #333;
   }
   #prev-button{
-    box-align: center; 
+    margin-left: 10%;
+  }
+
+  #next-button{
+    margin-left: 10%;
   }

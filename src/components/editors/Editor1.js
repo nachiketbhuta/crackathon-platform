@@ -12,7 +12,7 @@ export default class Editor1 extends Component {
     cards: [
       {
         id: 1,
-        text: '#include<iostream>',
+        text: '#include<iostream1>',
       },
       {
         id: 2,
@@ -24,9 +24,7 @@ export default class Editor1 extends Component {
       },
       {
         id: 4,
-        text: `if (s==1) {
-          cout << "Hello World" << endl;
-        }`,
+        text: 'cout << "Hello World" << endl;',
       },
       {
         id: 5,
@@ -38,21 +36,13 @@ export default class Editor1 extends Component {
         text: '}',
       },
     ],
-    language: ['c', 'cpp', 'java', 'python'],
+
     score: 0,
-    time: null,
-    inputTestcases: '10 3',
-    outputTestcases: '13',
+    time: null
   }
 
   componentDidMount() {
     this.setCorrectOrder()
-  }
-
-  componentWillMount() {
-    // Language
-
-
   }
 
   setCorrectOrder = () => {
@@ -133,13 +123,13 @@ export default class Editor1 extends Component {
               <div className="input-testcases">
                 <p className="font-weight-bold h5 text-white text-center">Example Input</p>
                 <pre className="text-white text-center">
-                  {this.state.inputTestcases}
+                  10 3
                 </pre>
               </div>
               <div className="output-testcases">
                 <p className="font-weight-bold h5 text-white text-center">Example Output</p>
                 <pre className="text-white text-center">
-                  {this.state.outputTestcases}
+                  13
                 </pre>
               </div>
             </div>
