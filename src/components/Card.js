@@ -21,7 +21,10 @@ const style = {
   cursor: 'move',
   color: '#39ff14',
   borderRadius: '10px',
-  marginRight: '25px'
+  marginRight: '25px',
+  display: 'flex',
+  flexDirection: 'row',
+  whiteSpace: 'pre-line'
 };
 
 const cardSource = {
@@ -105,7 +108,13 @@ class Card extends React.Component {
       connectDragSource &&
       connectDropTarget &&
       connectDragSource(
-        connectDropTarget(<div style={{ ...style, opacity }}>{text}</div>),
+        connectDropTarget(
+        <div style={{ ...style, opacity }}>
+          {/* <div> */}
+            {text}
+          {/* </div>   */}
+        </div>
+        ),
       )
     );
   }
