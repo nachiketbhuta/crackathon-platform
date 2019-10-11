@@ -3,8 +3,11 @@ import * as moment from 'moment';
 
 import Card from './Card';
 import './../App.css';
+// import { steps } from './../steps';
+// import MultiStep  from 'react-multistep';
 
 const update = require('immutability-helper');
+
 
 export default class Editor extends Component {
 
@@ -49,9 +52,9 @@ export default class Editor extends Component {
     const order = [];
     const ids = [];
     this.state.cards.forEach(card => ids.push(card.id));
-    
+
     const max = Math.max.apply(null, ids);
-    
+
     for (let i = 1; i <= max; i++) {
       order.push(i);
     }
@@ -116,18 +119,36 @@ export default class Editor extends Component {
 
   render() {
     return (
-      <div className="display-container">
-        <div className="all-btns-container">
-          <div className="score-container">
-            <p className="score text-center" id="score">Score: {this.state.score}</p>
-            <div className="time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</div>
-          </div>
+      <div>
+        {/* <div>
+          <MultiStep steps={steps} showNavigation={true} /> 
+        </div> */}
+        
+        <div className="display-container">
+          <div className="all-btns-container">
+            <div className="score-container">
+              <p className="score text-center" id="score">Score: {this.state.score}</p>
+              <div className="example-testcases">
+                <div className="input-testcases">
+                  <p className="font-weight-bold h5 text-white">Example Input</p>
+                  <pre className="text-white">
+                    10 3
+                </pre>
+                </div>
+                <div className="output-testcases">
+                  <p className="font-weight-bold h5 text-white">Example Output</p>
+                  <pre className="text-white">
+                    13
+                </pre>
+                </div>
+              </div>
+            </div>
 
-          <div className="text-center pt-5">
-            <input
-              type="submit"
-              className="btn btn-success btn-lg"
-              onClick={() =>{
+            <div className="text-center pt-5">
+              <input
+                type="submit"
+                className="btn btn-success btn-lg"
+                onClick={() => {
                   if (this.checkAnswer(this.state.cards)) {
                     this.renderScore(true);
                     this.setState({
@@ -137,24 +158,26 @@ export default class Editor extends Component {
                     this.renderScore(false);
                   }
                 }
-              }
-            />
+                }
+              />
+
+              <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p>
+            </div>
+          </div>
+          <div className="card-container">
+            {this.state.cards.map((card, i) => (
+              <Card
+                key={card.id}
+                index={i}
+                id={card.id}
+                text={card.text}
+                moveCard={this.moveCard}
+              />
+
+            ))}
           </div>
         </div>
-        <div className="card-container">
-          {this.state.cards.map((card, i) => (
-            <Card
-              key={card.id}
-              index={i}
-              id={card.id}
-              text={card.text}
-              moveCard={this.moveCard}
-            />
-
-          ))}
-        </div>
       </div>
-
     )
   }
 }

@@ -49,6 +49,26 @@ body {
 .time {
   color: white;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
+  font-size: 15px;
 }
 
+.example-testcases {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin-left: 25px;
+  margin-right: 10px;
+  margin-top: 60px;
+}
+
+.input-testcases {
+  flex: 1;
+  justify-content: center;
+}
+
+.output-testcases {
+  flex: 1;
+}
