@@ -37,7 +37,7 @@ export default class Editor extends Component {
     ],
 
     correctOrder: [1, 2, 3, 4, 5, 6],
-    status: ''
+    score: 0,
   }
 
   componentDidMount() {
@@ -74,33 +74,60 @@ export default class Editor extends Component {
     return false;
   }
 
-  render() {    
+  renderAlert = (msg) => {
+    window.alert(msg);
+  }
+
+  renderScore = (isCorrect) => {
+    let { score } = this.state;
+
+    score = parseInt(score);
+
+    if (isCorrect) {
+      this.renderAlert("Correct Answer")
+      score += 100
+    } else {
+      this.renderAlert("Wrong Answer")
+      score -= 5;
+    }
+
+    this.setState({
+      score
+    })
+  }
+
+  render() {
     return (
+      <div>
+        <div className="score-container ">
+          <p>Score: {this.state.score}</p>
+        </div>
         <div className="card-container">
-        {this.state.cards.map((card, i) => (
-          <Card
-            key={card.id}
-            index={i}
-            id={card.id}
-            text={card.text}
-            moveCard={this.moveCard}
-          />
-        ))}
+          {this.state.cards.map((card, i) => (
+            <Card
+              key={card.id}
+              index={i}
+              id={card.id}
+              text={card.text}
+              moveCard={this.moveCard}
+            />
 
-        <input 
-          type="submit"
-          onClick={() => 
-              this.checkAnswer(this.state.cards) ? 
-                this.setState({ status: 'Correct Answer' }) : 
-                this.setState({ status: 'Wrong Answer' })
+          ))}
+          <input
+            type="submit"
+            className="btn btn-success"
+            onClick={() =>{
+                if (this.checkAnswer(this.state.cards)) {
+                  this.renderScore(true);
+                } else {
+                  this.renderScore(false);
+                }
+              }
             }
-        />
-
-        <p>{this.state.status}</p>
-
+          />
+        </div>
       </div>
 
-      
     )
   }
 }

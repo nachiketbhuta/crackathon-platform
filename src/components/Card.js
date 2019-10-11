@@ -17,8 +17,10 @@ const style = {
   border: '1px dashed gray',
   padding: '0.5rem 1rem',
   marginBottom: '.5rem',
-  backgroundColor: 'white',
+  backgroundColor: 'rgb(18, 0, 98)',
   cursor: 'move',
+  color: 'white',
+  borderRadius: '10px'
 };
 
 const cardSource = {

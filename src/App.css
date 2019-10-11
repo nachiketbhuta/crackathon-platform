@@ -7,9 +7,12 @@
 
 .card-container {
   font-family: 'Courier New', Courier, monospace;
-  width: 90%;
+  width: 40%;
   margin: auto;
-  background: rgb(18, 0, 98);
+}
+
+.score-container {
+  margin: auto;
 }
 
 body{
@@ -17,7 +20,7 @@ body{
 }
 
 html, body{
-  background: rgb(18, 0, 98);
+  
   color: #fff;
 }
 
