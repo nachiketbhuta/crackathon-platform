@@ -10,39 +10,74 @@ export default class Editor3 extends Component {
 
   state = {
     cards: [
-      {
-        id: 1,
-        text: '#include<iostream3>',
-      },
-      {
-        id: 2,
-        text: 'using namespace std;',
-      },
-      {
-        id: 3,
-        text: 'int main() {',
-      },
-      {
-        id: 4,
-        text: 'cout << "Hello World" << endl;',
-      },
-      {
-        id: 5,
-        text:
-          'return 0;',
-      },
-      {
-        id: 6,
-        text: '}',
-      },
+      // {
+      //   id: 1,
+      //   text: '#include<iostream3>',
+      // },
+      // {
+      //   id: 2,
+      //   text: 'using namespace std;',
+      // },
+      // {
+      //   id: 3,
+      //   text: 'int main() {',
+      // },
+      // {
+      //   id: 4,
+      //   text: 'cout << "Hello World" << endl;',
+      // },
+      // {
+      //   id: 5,
+      //   text:
+      //     'return 0;',
+      // },
+      // {
+      //   id: 6,
+      //   text: '}',
+      // },
     ],
-
+    languages: ['cpp', 'java', 'python', 'javascript'],
+    // languages: ['javascript', 'python'],
     score: 0,
-    time: null
+    time: null,
+    outputTestcases: ''
   }
 
-  componentDidMount() {
-    this.setCorrectOrder()
+  async componentWillMount() {
+    // Language
+    const randomLang = this.state.languages[2];
+    console.log(randomLang);
+    const data = {
+			language: randomLang
+		};
+
+		const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/getquestion`, {
+			method: 'POST',
+			mode: 'cors',
+			cache: 'no-cache',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			  },
+			  redirect: 'follow', // manual, *follow, error
+			  referrer: 'no-referrer', // no-referrer, *client
+			  body: JSON.stringify(data)
+		});
+
+		const resData = await res.json();
+
+    console.log(resData);
+    this.setState({
+      cards: resData.cards,
+      outputTestcases: resData.outputTestcases
+    })
+
+    this.setState({
+      score: localStorage.getItem('score') != 0 ? localStorage.getItem('score'): 0
+    });
+
+    this.setCorrectOrder();
   }
 
   setCorrectOrder = () => {
@@ -103,12 +138,17 @@ export default class Editor3 extends Component {
       document.getElementById("score").style.color = "#39ff14";
       
       score += 100
+      localStorage.setItem('prgm3', true);
+
     } else {
       
       document.getElementById("score").style.color = "red";
       score -= 10;
+      localStorage.setItem('prgm3', false);
+
     }
 
+    localStorage.setItem('score', score);
     this.setState({
       score
     })
@@ -122,16 +162,10 @@ export default class Editor3 extends Component {
             <div className="score-container">
               <p className="score text-center" id="score">Score: {this.state.score}</p>
               <div className="example-testcases justify-content-around">
-                <div className="input-testcases">
-                  <p className="font-weight-bold h5 text-white text-center">Example Input</p>
-                  <pre className="text-white text-center">
-                    10 3
-                </pre>
-                </div>
                 <div className="output-testcases">
                   <p className="font-weight-bold h5 text-white text-center">Example Output</p>
                   <pre className="text-white text-center">
-                    13
+                    {this.state.outputTestcases}
                 </pre>
                 </div>
               </div>
@@ -145,9 +179,9 @@ export default class Editor3 extends Component {
               onClick={() => {
                 if (this.checkAnswer(this.state.cards)) {
                   this.renderScore(true);
-                  this.setState({
-                    time: moment().format('MMMM Do YYYY, h:mm:ss a')
-                  })
+                  // this.setState({
+                  //   time: moment().format('MMMM Do YYYY, h:mm:ss a')
+                  // })
                 } else {
                   this.renderScore(false);
                 }
@@ -155,7 +189,7 @@ export default class Editor3 extends Component {
               }
             />
 
-              <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p>
+              {/* <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p> */}
             </div>
           </div>
           <div className="card-container">

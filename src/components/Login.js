@@ -42,7 +42,8 @@ export default class Login extends Component {
 
 		console.log(resData);
 		if (resData.success) {
-			return <Redirect to="/editor" />
+			localStorage.setItem('team', teamId);
+			this.props.history.push('/editor');
 		}
 		
 	};

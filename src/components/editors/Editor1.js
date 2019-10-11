@@ -36,10 +36,10 @@ export default class Editor1 extends Component {
       //   text: '}',
       // },
     ],
-    languages: ['javascript'],
-    score: 0,
+    languages: ['cpp', 'java', 'python', 'javascript'],
     time: null,
-    outputTestcases: ''
+    outputTestcases: '',
+    score: 0
   }
 
   // componentDidMount() {
@@ -50,9 +50,12 @@ export default class Editor1 extends Component {
   // }
 
   async componentWillMount() {
+
+    localStorage.setItem('score', 0);
+
     // Language
-    const randomLang = this.state.languages[Math.floor(Math.random()*this.state.languages.length)];
-    
+    const randomLang = this.state.languages[0];
+    console.log(randomLang);
     const data = {
 			language: randomLang
 		};
@@ -76,7 +79,7 @@ export default class Editor1 extends Component {
     console.log(resData);
     this.setState({
       cards: resData.cards,
-      outputTestcases: resData.outputTestCases
+      outputTestcases: resData.outputTestcases
     })
 
     this.setCorrectOrder();
@@ -133,15 +136,18 @@ export default class Editor1 extends Component {
   }
 
   renderScore = (isCorrect) => {
-    let { score } = this.state;
-    score = parseInt(score);
+    let score = 0;
 
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
       score += 100
+      localStorage.setItem('prgm1', true);
+
     } else {
       document.getElementById("score").style.color = "red";
       score -= 10;
+      localStorage.setItem('prgm1', false);
+
     }
 
     localStorage.setItem('score', score);
@@ -184,9 +190,9 @@ export default class Editor1 extends Component {
               onClick={() => {
                 if (this.checkAnswer(this.state.cards)) {
                   this.renderScore(true);
-                  this.setState({
-                    time: moment().format('MMMM Do YYYY, h:mm:ss a')
-                  })
+                  // this.setState({
+                  //   time: moment().format('MMMM Do YYYY, h:mm:ss a')
+                  // })
                 } else {
                   this.renderScore(false);
                 }
@@ -195,7 +201,7 @@ export default class Editor1 extends Component {
             />
 
 
-            <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p>
+            {/* <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p> */}
           </div>
         </div>
         <div className="card-container">
