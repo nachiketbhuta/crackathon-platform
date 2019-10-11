@@ -17,7 +17,7 @@ export default class Final extends Component {
     })
   }
 
-  sendFinalScore = () => {
+  sendFinalScore = async () => {
     let prgm1 = localStorage.getItem('prgm1');
     let prgm2 = localStorage.getItem('prgm2');
     let prgm3 = localStorage.getItem('prgm3');
