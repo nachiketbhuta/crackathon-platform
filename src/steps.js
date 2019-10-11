@@ -4,7 +4,7 @@ import Editor1 from './components/editors/Editor1';
 import Editor2 from './components/editors/Editor2';
 import Editor3 from './components/editors/Editor3';
 import Editor4 from './components/editors/Editor4';
-import Final from './components/Final';
+import Final from './components/editors/Final';
 
 // import Test from './components/Test';
 
