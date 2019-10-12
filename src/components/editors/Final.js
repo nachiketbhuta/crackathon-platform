@@ -81,7 +81,7 @@ export default class Final extends Component {
       });
   
       const resData = await res.json();
-      
+      this.props.history.push('/');
   }
   
   render() {
