@@ -148,6 +148,8 @@ export default class Editor1 extends Component {
   renderScore = (isCorrect) => {
     let { score } = this.state;
 
+    score = parseInt(score);
+
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
       score += 100
