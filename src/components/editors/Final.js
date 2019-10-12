@@ -56,13 +56,13 @@ export default class Final extends Component {
   render() {
     return (
       <div className="text-center pt-5">
-
-        <p className="h5">Final Score: {this.state.finalScore}</p>
+        <p className="h5 text-white">Team Name: { localStorage.getItem('team') }</p>
+        <p className="h5 text-white">Final Score: {this.state.finalScore}</p>
 
         <input
           value="Submit"
           type="submit"
-          className="btn btn-success btn-lg"
+          className="btn btn-success btn-lg mt-5"
 
         />
       </div>

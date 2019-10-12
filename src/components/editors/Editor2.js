@@ -40,10 +40,15 @@ export default class Editor2 extends Component {
     // languages: ['javascript', 'python'],
     score: 0,
     time: null,
-    outputTestcases: ''
+    outputTestcases: '',
+    isSubmitted: false
   }
 
   async componentWillMount() {
+    if (localStorage.getItem('score') == null) {
+      localStorage.setItem('score', 0);
+    }
+
     // Language
     const randomLang = this.state.languages[1];
     console.log(randomLang);
@@ -74,7 +79,8 @@ export default class Editor2 extends Component {
     })
 
     this.setState({
-      score: localStorage.getItem('score') != 0 ? localStorage.getItem('score'): 0
+      isSubmitted: localStorage.getItem('prgm2') === 'true' ? true: false,
+      score: localStorage.getItem('score')
     });
 
     this.setCorrectOrder();
@@ -143,17 +149,23 @@ export default class Editor2 extends Component {
       document.getElementById("score").style.color = "#39ff14";
       score += 100;
       localStorage.setItem('prgm2', true);
+
+      this.setState({
+        isSubmitted: localStorage.getItem('prgm2') === 'true' ? true: false
+      })
     } else {
       document.getElementById("score").style.color = "red";
       score -= 10;
       localStorage.setItem('prgm2', false);
     }
+
     console.log(score);
     localStorage.setItem('score', score);
 
     this.setState({
-      score
+      score: localStorage.getItem('score')
     })
+
   }
 
   render() {
@@ -189,7 +201,11 @@ export default class Editor2 extends Component {
                 }
               }
               }
+              disabled={this.state.isSubmitted}
             />
+            {
+              this.state.isSubmitted && <h1 className="mt-5 h5 text-white">You have already submitted this program!</h1>
+            }
               {/* <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p> */}
             </div>
           </div>

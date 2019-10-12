@@ -39,7 +39,8 @@ export default class Editor1 extends Component {
     languages: ['cpp', 'java', 'python', 'javascript'],
     time: null,
     outputTestcases: '',
-    score: 0
+    score: 0,
+    isSubmitted: false
   }
 
   // componentDidMount() {
@@ -50,8 +51,9 @@ export default class Editor1 extends Component {
   // }
 
   async componentWillMount() {
-
-    localStorage.setItem('score', 0);
+    if (localStorage.getItem('score') == null) {
+      localStorage.setItem('score', 0);
+    }
 
     // Language
     const randomLang = this.state.languages[0];
@@ -81,6 +83,11 @@ export default class Editor1 extends Component {
       cards: resData.cards,
       outputTestcases: resData.outputTestcases
     })
+
+    this.setState({
+      isSubmitted: localStorage.getItem('prgm1') === 'true' ? true: false,
+      score: localStorage.getItem('score')
+    });
 
     this.setCorrectOrder();
   }
@@ -143,17 +150,22 @@ export default class Editor1 extends Component {
       score += 100
       localStorage.setItem('prgm1', true);
 
+      this.setState({
+        isSubmitted: localStorage.getItem('prgm1') === 'true' ? true: false
+      })
+
     } else {
       document.getElementById("score").style.color = "red";
       score -= 10;
       localStorage.setItem('prgm1', false);
-
     }
 
     localStorage.setItem('score', score);
 
+    // const updatedScore = parseInt(localStorage.getItem('score'));
+
     this.setState({
-      score
+      score: localStorage.getItem('score')
     })
 
     // if (localStorage.getItem('score') === false) {
@@ -198,7 +210,12 @@ export default class Editor1 extends Component {
                 }
               }
               }
+              disabled={this.state.isSubmitted}
             />
+
+            {
+              this.state.isSubmitted && <h1 className="mt-5 h5 text-white">You have already submitted this program!</h1>
+            }
 
 
             {/* <p className="mt-4 time text-center text-white">Last Submitted: {this.state.time !== null ? this.state.time : ''}</p> */}
