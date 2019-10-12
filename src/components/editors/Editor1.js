@@ -51,6 +51,9 @@ export default class Editor1 extends Component {
   // }
 
   async componentWillMount() {
+
+    localStorage.setItem('start', moment());
+
     if (localStorage.getItem('score') == null) {
       localStorage.setItem('score', 0);
     }

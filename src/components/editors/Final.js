@@ -20,6 +20,12 @@ export default class Final extends Component {
   }
 
   sendFinalScore = async () => {
+
+    let start = localStorage.getItem('start');
+    let end = moment();
+
+    let diff = moment(end.diff(start)).milliseconds();
+
     let prgm1 = localStorage.getItem('prgm1');
     let prgm2 = localStorage.getItem('prgm2');
     let prgm3 = localStorage.getItem('prgm3');
@@ -28,8 +34,11 @@ export default class Final extends Component {
     if (prgm1 && prgm2 && prgm3 && prgm4) {
       const data = {
         team: localStorage.getItem('team'),
-        score: this.state.finalScore
+        score: this.state.finalScore,
+        time: diff
       };
+
+      console.log(data);
   
       const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/checkAnswer`, {
         method: 'POST',
@@ -46,13 +55,33 @@ export default class Final extends Component {
       });
   
       const resData = await res.json();
-
+      console.log(resData);
       if (resData.success) {
         window.alert("Thank you for participating in Crackathon!");
+        localStorage.clear();
+        this.logout();
       }
     } else {
       window.alert("Solving all the problems is mandatory");
     }
+  }
+
+  logout = async () => {
+    const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/users/logout`, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrer: 'no-referrer', // no-referrer, *client
+      });
+  
+      const resData = await res.json();
+      
   }
   
   render() {
