@@ -9,11 +9,13 @@ export default class Final extends Component {
   
   state = {
     finalScore: 0,
+    team: ''
   }
   
   componentWillMount() {
     this.setState({
-      finalScore: localStorage.getItem('score') != 0 ? localStorage.getItem('score'): 0
+      finalScore: localStorage.getItem('score') != 0 ? localStorage.getItem('score'): 0,
+      // team: localStorage.getItem('team')
     })
   }
 
@@ -29,7 +31,7 @@ export default class Final extends Component {
         score: this.state.finalScore
       };
   
-      const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/getquestion`, {
+      const res = await fetch(`https://guarded-chamber-94862.herokuapp.com/checkAnswer`, {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -63,7 +65,7 @@ export default class Final extends Component {
           value="Submit"
           type="submit"
           className="btn btn-success btn-lg mt-5"
-
+          onClick={() => this.sendFinalScore()}
         />
       </div>
 
