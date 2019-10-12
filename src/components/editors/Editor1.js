@@ -146,7 +146,7 @@ export default class Editor1 extends Component {
   }
 
   renderScore = (isCorrect) => {
-    let score = 0;
+    let { score } = this.state;
 
     if (isCorrect) {
       document.getElementById("score").style.color = "#39ff14";
