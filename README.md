@@ -32,5 +32,6 @@
 
 - [@Syn3rman](https://github.com/Syn3rman)
 - [@nachiketbhuta](https://github.com/nachiketbhuta)
+- [@Techno-Disaster](https://github.com/Techno-Disaster)
   
 ------------------------------------------
